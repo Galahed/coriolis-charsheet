@@ -34,6 +34,7 @@ class MainPage extends React.Component {
       data: {
         'Новостная бегущая строка': 1,
       },
+      selected: 100,
     };
   }
 
@@ -51,7 +52,11 @@ class MainPage extends React.Component {
     audio && audio.play();
   }
 
-  onPress(selected) { return (e) => this.setState({ selected }); }
+  onPress(select) {
+    const { selected } = this.state;
+
+    return (e) => this.setState({ selected: select === selected ? 100 : select });
+  }
 
   Tab(props) {
     return <TabBar.Item {...props} ico={<Icon type={props.icon} />} icon={props.icon} />;
