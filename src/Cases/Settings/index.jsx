@@ -136,8 +136,14 @@ class Settings extends CommonList {
     QRCode.toCanvas(this.qrcode, shareLink);
   }
 
+  onChange(a, b) {
+    const { data = {} } = this.props;
+    data[a] = b;
+    this.props.onSave && this.props.onSave(data);
+  }
+
   onMusic() {
-    this.setState({ music: !this.state.music });
+    this.onChange('music',1)
   }
 
   render() {
@@ -163,8 +169,10 @@ class Settings extends CommonList {
               <canvas className="qrcode" hidden={!shareLink} ref={(ref) => this.qrcode = ref} />
             </div>
           </List.Item>
-
         </List>
+        <div className="utils d-none">
+          <iframe src="about:blank" id="f1" ref={(ref) => this.iframe = ref} />
+        </div>
         <List renderHeader={(e) => <h4>О программе</h4>}>
           <List.Item>приложение компаньон для НРИ Кориолис</List.Item>
           <List.Item>2019, Innopolis</List.Item>
@@ -173,10 +181,6 @@ tlg: @launch_photon_torpedoes
             <FaRocket className="ml-3 color-red" />
           </List.Item>
         </List>
-        <div className="utils d-none">
-          {music ? <audio autoPlay loop src="//load.mp3fan.ru/audio/100024972874913/Sam%20Hulick%20%E2%80%93%20Uncharted%20Worlds_(mp3fan.ru).mp3" /> : null}
-          <iframe src="about:blank" id="f1" ref={(ref) => this.iframe = ref} />
-        </div>
       </div>
     );
   }

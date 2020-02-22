@@ -121,6 +121,9 @@ class MainPage extends React.Component {
           <Settings data={data} onSave={(data) => this.onChange(data)} />
           <NewsBoard news={news} data={data} onSave={(data) => this.onChange(data)} />
         </Selector>
+        <div className="utils d-none">
+          {data.music ? <audio autoPlay loop src="//load.mp3fan.ru/audio/100024972874913/Sam%20Hulick%20%E2%80%93%20Uncharted%20Worlds_(mp3fan.ru).mp3" /> : null}
+        </div>
         <TabBar
           unselectedTintColor="gray"
           tintColor="white"
