@@ -143,7 +143,7 @@ class Settings extends CommonList {
   }
 
   onMusic() {
-    this.onChange('music',1)
+    this.onChange('music', 1);
   }
 
   render() {
@@ -154,13 +154,17 @@ class Settings extends CommonList {
       <div>
         <h1>Settings</h1>
         <List renderHeader={(e) => <h4>Настройки</h4>}>
+          {this.ItemCheck('Новостная бегущая строка')}
+          {this.ItemCheck('Музыка')}
           {this.ItemString('URL_character')}
           {this.ItemString('URL_background')}
           <List.Item>
             <div className="d-flex flex-auto justify-content-around">
               <Button onClick={onPrint.bind(this)} className="pl-3 pr-3">Печать</Button>
               <Button onClick={onShare.bind(this)} className="pl-3 pr-3">Поделиться</Button>
+{/*
               <Button onClick={onMusic.bind(this)} className="pl-3 pr-3">Музыка</Button>
+*/}
             </div>
           </List.Item>
           <List.Item><InputItem label="Link" className="link" value={shareLink} hidden={!shareLink} /></List.Item>
