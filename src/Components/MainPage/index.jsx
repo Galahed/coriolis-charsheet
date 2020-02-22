@@ -30,7 +30,11 @@ import NewsStorage from '../../Data/news';
 class MainPage extends React.Component {
   constructor() {
     super();
-    this.state = { data: {} };
+    this.state = {
+      data: {
+        'Новостная бегущая строка': 1,
+      },
+    };
   }
 
   componentDidMount() {
@@ -39,6 +43,12 @@ class MainPage extends React.Component {
       this.setState({ data });
     }
     setTimeout((e) => this.setState({ loaded: 1 }), 100);
+    //    setTimeout(this.audioStart, 1000);
+  }
+
+  audioStart() {
+    const audio = document.getElementsByTagName('audio')[0];
+    audio && audio.play();
   }
 
   onPress(selected) { return (e) => this.setState({ selected }); }
@@ -106,7 +116,7 @@ class MainPage extends React.Component {
             </div>
             <Button onClick={(e) => this.changeBackground(+1)} />
           </div>
-          <NewsLine news={news} onClick={this.onPress(10)} />
+          <NewsLine data={data} news={news} onClick={this.onPress(10)} />
         </div>
         <Selector selected={this.state.selected} className="pane">
           <div hidden />
@@ -122,7 +132,7 @@ class MainPage extends React.Component {
           <NewsBoard news={news} data={data} onSave={(data) => this.onChange(data)} />
         </Selector>
         <div className="utils d-none">
-          {data.music ? <audio autoPlay loop src="//load.mp3fan.ru/audio/100024972874913/Sam%20Hulick%20%E2%80%93%20Uncharted%20Worlds_(mp3fan.ru).mp3" /> : null}
+          {this.state.selected !== undefined && data['Музыка'] ? <audio autoPlay loop src="//load.mp3fan.ru/audio/100024972874913/Sam%20Hulick%20%E2%80%93%20Uncharted%20Worlds_(mp3fan.ru).mp3" /> : null}
         </div>
         <TabBar
           unselectedTintColor="gray"

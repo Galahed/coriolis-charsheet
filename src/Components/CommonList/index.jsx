@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-  InputItem, List, TextareaItem,
+  Checkbox,
+  CheckboxItem,
+  InputItem, List, SegmentedControl, TextareaItem, WingBlank,
 } from 'antd-mobile';
 import Stepper from '../Stepper';
 
@@ -70,6 +72,17 @@ class CommonList extends React.Component {
       >
         {props}
       </TextareaItem>
+    );
+  }
+
+  ItemCheck(props) {
+    const { data = {} } = this.props;
+    const attrib = this.getAttrib(props);
+
+    return (
+      <Checkbox.CheckboxItem defaultChecked={!!data[attrib]} onChange={(v) => this.onChange(attrib, !data[attrib])}>
+        <span className="ml-3">{attrib}</span>
+      </Checkbox.CheckboxItem>
     );
   }
 
