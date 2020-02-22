@@ -4,9 +4,7 @@ import {
 } from 'antd-mobile';
 import { FaRocket } from 'react-icons/fa';
 import NodeZip from 'node-zip';
-/*
-import { QRCode } from 'react-qrcode'
-*/
+import QRCode from 'qrcode';
 import CommonList from '../../Components/CommonList';
 
 
@@ -135,6 +133,7 @@ class Settings extends CommonList {
     await this.setState({ shareLink });
     const copyEvent = new ClipboardEvent('copy', { dataType: 'text/plain', shareLink });
     document.dispatchEvent(copyEvent);
+    QRCode.toCanvas(this.qrcode, shareLink);
   }
 
   onMusic() {
@@ -159,9 +158,11 @@ class Settings extends CommonList {
             </div>
           </List.Item>
           <List.Item><InputItem label="Link" className="link" value={shareLink} hidden={!shareLink} /></List.Item>
-{/*
-          <List.Item><QRCode value={shareLink} hidden={!shareLink} /></List.Item>
-*/}
+          <List.Item>
+            <div className="d-flex justify-content-center">
+              <canvas className="qrcode" hidden={!shareLink} ref={(ref) => this.qrcode = ref} />
+            </div>
+          </List.Item>
 
         </List>
         <List renderHeader={(e) => <h4>О программе</h4>}>

@@ -216,3 +216,8 @@ div.am-list-item .am-input-label.am-input-label-5{
 .marquee-container:hover{
   opacity:0.9;
 }
+
+.qrcode{
+  width:200px!important;
+  height:200px!important;
+}
