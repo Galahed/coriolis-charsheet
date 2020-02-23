@@ -221,3 +221,8 @@ div.am-list-item .am-input-label.am-input-label-5{
   width:200px!important;
   height:200px!important;
 }
+
+div.am-stepper.showNumber {
+  display: flex;
+  width: auto;
+}
