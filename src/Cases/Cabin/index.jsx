@@ -8,18 +8,18 @@ class Cabin extends CommonList {
       <div>
         <h1>Personal cabin</h1>
         <List renderHeader={(e) => <h4>Описание</h4>}>
-          {this.ItemText('')}
+          {this.ItemText('Описание')}
         </List>
-        <List renderHeader={(e) => <h4>Снаряжение</h4>}>
-          {this.ItemString('Снаряжение 1')}
-          {this.ItemString('Снаряжение 2')}
-          {this.ItemString('Снаряжение 3')}
-          {this.ItemString('Снаряжение 4')}
-          {this.ItemString('Снаряжение 5')}
-          {this.ItemString('Снаряжение 6')}
-          {this.ItemString('Снаряжение 7')}
-          {this.ItemString('Снаряжение 8')}
-          {this.ItemString('Снаряжение 9')}
+        <List renderHeader={(e) => <h4>Оснащение</h4>}>
+          {this.ItemString('Оснащение 1')}
+          {this.ItemString('Оснащение 2')}
+          {this.ItemString('Оснащение 3')}
+          {this.ItemString('Оснащение 4')}
+          {this.ItemString('Оснащение 5')}
+          {this.ItemString('Оснащение 6')}
+          {this.ItemString('Оснащение 7')}
+          {this.ItemString('Оснащение 8')}
+          {this.ItemString('Оснащение 9')}
         </List>
         <List renderHeader={(e) => <h4>Прочее</h4>}>
           {this.ItemString('Прочее 1')}

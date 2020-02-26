@@ -1,6 +1,7 @@
 import React from 'react';
+import NodeZip from 'node-zip';
 import {
-  Button, Icon, NoticeBar, TabBar,
+  Button, Icon, Modal, TabBar,
 } from 'antd-mobile';
 import {
   FaBraille, FaCogs,
@@ -25,6 +26,7 @@ import NewsLine from '../../Cases/NewsLine';
 import NewsBoard from '../../Cases/NewsBoard';
 import NewsStorage from '../../Data/news';
 
+
 // const Tab = function (props) { return <TabBar.Item {...props} icon={<Icon type={props.icon} />} />; };
 
 class MainPage extends React.Component {
@@ -38,13 +40,51 @@ class MainPage extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.checkLink();
     if (localStorage.coriolis) {
       const data = JSON.parse(localStorage.coriolis);
       this.setState({ data });
     }
     setTimeout((e) => this.setState({ loaded: 1 }), 100);
     //    setTimeout(this.audioStart, 1000);
+  }
+
+
+  async checkLink() {
+    const url = document.location.href;
+    const TSH = (s) => {
+      for (var i = 0, h = 9; i < s.length;)h = Math.imul(h ^ s.charCodeAt(i++), 9 ** 9);
+
+      return h ^ h >>> 9;
+    };
+    const hash = TSH(url);
+    if (localStorage.coriolis_hash === hash+'') { return; }
+    localStorage.coriolis_hash = hash;
+    const unitToString = (uintArray) => {
+      const encodedString = String.fromCharCode.apply(null, uintArray);
+      const decodedString = decodeURIComponent(escape(encodedString));
+
+      return decodedString;
+    };
+    if (url.match(/\?/)) {
+      try {
+        const data = url.split(/\?/)[1];
+        const zip = new NodeZip(data, { base64: true, checkCRC32: false });
+        const resp = await this.confirm('Загрузить данные из ссылки (удалит текущего персонажа)');
+        if (!resp) { return; }
+        localStorage.coriolis = unitToString(zip.files['character.zip']._data.getContent());
+      } catch (e) { console.error(e); }
+    }
+  }
+
+  async confirm(text, title) {
+    return new Promise((resolve, reject) => {
+      Modal.alert(title || 'Confirm', text, [
+        { text: 'Cancel', onPress: async () => await resolve(false) },
+        { text: 'Ok', onPress: async () => await resolve(true) },
+      ]);
+    });
   }
 
   audioStart() {

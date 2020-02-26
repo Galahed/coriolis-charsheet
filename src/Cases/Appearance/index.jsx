@@ -21,6 +21,9 @@ class Appearance extends CommonList {
           {this.ItemString('Лицо')}
           {this.ItemString('Одежда')}
         </List>
+        <List renderHeader={(e) => <h4>История</h4>}>
+          {this.ItemText('История')}
+        </List>
       </div>
     );
   }
