@@ -6,7 +6,7 @@ class NewsBoard extends React.Component {
 
     return (
       <div className="NewsBoard">
-        {news.map((s, i) => (
+        {news.reverse().map((s, i) => (
           <div className="p-3 text-justify" key={i}>
             {s.split(/\n/).map((a) => <p>{a}</p>)}
           </div>

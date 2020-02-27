@@ -11,7 +11,7 @@ class News extends React.Component {
     return (
       <div className="marquee-container" hidden={!data['Новостная бегущая строка']}>
         <NoticeBar marqueeProps={styling}>
-          {news.map((s, i) => <span key={i} onClick={(e) => onClick(i)}>{s}</span>)}
+          {news.reverse().map((s, i) => <span key={i} onClick={(e) => onClick(i)}>{s}</span>)}
         </NoticeBar>
       </div>
     );
