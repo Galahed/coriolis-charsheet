@@ -14,11 +14,11 @@ class Skills extends CommonList {
           {this.ItemString('Талант 4')}
         </List>
         <List renderHeader={(e) => <h4>Общие навыки:</h4>}>
-          {this.ItemNumber('Ближний бой (сила)')}
+          {this.ItemNumber('Ближний бой (телосложение)')}
           {this.ItemNumber('Влияние (эмпатия)')}
           {this.ItemNumber('Выживание (смекалка)')}
           {this.ItemNumber('Наблюдательность (смекалка)')}
-          {this.ItemNumber('Проворство (смекалка)')}
+          {this.ItemNumber('Проворство (ловкость)')}
           {this.ItemNumber('Сила (телосложение)')}
           {this.ItemNumber('Скрытность (ловкость)')}
           {this.ItemNumber('Стрельба (ловкость)')}
